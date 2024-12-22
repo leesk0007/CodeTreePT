@@ -28,7 +28,7 @@ int main() {
         sum+=k[i].sub[j];
         }
         k[i].avg = sum/4.0;
-        if(k[i].avg>60){
+        if(k[i].avg>=60){
             printf("pass\n");
             count++;
         }
