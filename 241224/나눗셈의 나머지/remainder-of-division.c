@@ -22,7 +22,7 @@ int main() {
     }
 
     // 결과 출력
-    printf("%d\n", sum);
+    printf("%d", sum);
 
     return 0;
 }
