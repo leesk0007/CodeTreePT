@@ -1,42 +1,58 @@
 #include <stdio.h>
-#include <stdlib.h>
 
 int main() {
-    int i, n, q, a, b, s, e;
-
-    // n, q 입력
-    scanf("%d %d", &n, &q);
-
-    // 배열 및 맵(해시 테이블) 초기화
-    int arr[n];
-    int *map = (int *)calloc(100001, sizeof(int)); // 최대 값 제한 가정 (100,000)
-
-    for (i = 0; i < n; i++) {
-        scanf("%d", &arr[i]);
-        map[arr[i]] = i + 1; // 값 -> 인덱스 저장
-    }
-
-    // 명령 처리
-    for (i = 0; i < q; i++) {
-        scanf("%d", &a);
-        if (a == 1) {
-            scanf("%d", &b);
-            printf("%d\n", arr[b - 1]); // b번째 값 출력
-        } else if (a == 2) {
-            scanf("%d", &b);
-            if (map[b] > 0)
-                printf("%d\n", map[b]); // 저장된 인덱스 출력
-            else
-                printf("0\n");
-        } else if (a == 3) {
-            scanf("%d %d", &s, &e);
-            for (int j = s - 1; j < e; j++) {
-                printf("%d ", arr[j]); // s부터 e까지 출력
-            }
-            printf("\n");
-        }
-    }
-
-    free(map); // 동적 메모리 해제
+    // 정수 n과 q을 입력받습니다.
+	int n, q;
+	scanf("%d %d", &n, &q);
+	int arr[100];
+	
+	// arr를 입력받습니다.
+	for(int i = 0; i < n; i++)
+		scanf("%d", &arr[i]);
+	
+	// q개의 질의를 수행합니다.
+	for(int i = 0; i < q; i++) {
+		// 몇번째 질의인지 확인합니다.
+		int q_type;
+		scanf("%d", &q_type);
+		
+		if(q_type == 1) {
+			// a를 입력받은 후, a번째 원소를 출력합니다.
+			int a;
+			scanf("%d", &a);
+			
+			// a번째 원소를 출력합니다.
+			printf("%d\n", arr[a - 1]);
+		}
+		else if(q_type == 2) {
+			// a를 입력받은 후, 배열에 숫자 a가 있다면 가장 index가 작은 원소가 몇번째인지 출력합니다. 없다면 0을 출력합니다.
+			int a;
+			scanf("%d", &a);
+			
+			// 가장 index가 작은 원소에 있는 숫자 a를 찾습니다.
+			int idx = -1;
+			for(int j = 0; j < n; j++) {
+				if(arr[j] == a) {
+					idx = j;
+					break;
+				}
+			}
+			
+			// 숫자 a가 몇번째인지 출력합니다. 없다면 0을 출력합니다.
+			printf("%d\n", idx + 1);
+		}
+		else {
+			// a, b를 입력받은 후, a번째 원소부터 b번째 원소까지 공백을 사이에 두고 출력합니다.
+			int a, b;
+			scanf("%d %d", &a, &b);
+			
+			// a번째 원소부터 b번째 원소까지 공백을 사이에 두고 출력합니다.
+			for(int j = a - 1; j < b; j++) {
+				printf("%d ", arr[j]);
+			}
+			printf("\n");
+		}
+	}
+	
     return 0;
 }
