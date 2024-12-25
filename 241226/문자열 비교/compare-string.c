@@ -1,39 +1,38 @@
 #include <stdio.h>
 #include <string.h>
 
+#define MAX_STR_LEN 100
 
 int main() {
-    // 여기에 코드를 작성해주세요.
-    
-    //문자열의 개수 n 과 m 입력받음
-    int n,m;
-    scanf("%d %d",&n, &m);
-    
-    char S[n][100];
-    char M[m][100];
-    int i,j;
+    int n, m;
+    scanf("%d %d", &n, &m);
 
-    //S 안에 들어갈 문자열들
-    for(i=0; i<n; i++){
-        scanf("%s",S[i]);
+    // 문자열 집합 S와 M
+    char S[n][MAX_STR_LEN];
+    char M[m][MAX_STR_LEN];
+
+    // 문자열 S 입력
+    for (int i = 0; i < n; i++) {
+        scanf("%s", S[i]);
     }
 
-    //M (테스트할 문자열들) 입력
-    for(i=0; i<m; i++){
-            scanf("%s",M[i]);
-        }
+    // 문자열 M 입력
+    for (int i = 0; i < m; i++) {
+        scanf("%s", M[i]);
+    }
 
-    //테스트 + 출력
-    int count=0;
-    for(i=0; i<n; i++){
-        for(j=0; j<m; j++){
-            if((strcmp(S[i],M[j])==0))
+    // 문자열 비교를 위한 카운트
+    int count = 0;
+    for (int i = 0; i < m; i++) {
+        for (int j = 0; j < n; j++) {
+            if (strcmp(M[i], S[j]) == 0) { // S에 M의 문자열이 있으면
                 count++;
+                break; // S에 한 번만 존재하면 충분
+            }
         }
     }
 
-    printf("%d",count);
-    
+    printf("%d\n", count);
 
     return 0;
 }
