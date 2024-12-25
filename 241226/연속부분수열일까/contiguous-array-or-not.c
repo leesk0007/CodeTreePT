@@ -1,48 +1,37 @@
 #include <stdio.h>
 
 int main() {
-    // 여기에 코드를 작성해주세요.
-
-    //n1 n2 입력받음
-    int i,j, n1, n2;
-    scanf("%d %d",&n1, &n2);
+    int n1, n2;
+    scanf("%d %d", &n1, &n2);
 
     int A[n1], B[n2];
 
-    //A 배열에 원소 입력
-    for(i=0; i<n1; i++){
-        scanf("%d",&A[i]);
+    // A 배열 입력
+    for (int i = 0; i < n1; i++) {
+        scanf("%d", &A[i]);
     }
 
-    //B 배열에 원소 입력
-    for(i=0; i<n2; i++){
-        scanf("%d",&B[i]);
+    // B 배열 입력
+    for (int i = 0; i < n2; i++) {
+        scanf("%d", &B[i]);
     }
 
-    //연속부분수열인지 판단
+    // 연속 부분 수열 확인
+    int i = 0, j = 0; // i: A 배열, j: B 배열
 
-    //A 하나씩 증가시키면서 B랑 같은게 있는지 탐색
-    for(i=0,j=0; i<n1; i++){
-    //있으면 A랑 B둘다 증가
-        if(A[i]==B[j]){
-            j++;
-            //증가시킨 j가 마지막 항이면 Yes
-            if(j==n2){
-                printf("Yes");
-                break;
-            }
-            //달라지는 순간 No
-            else if(A[i+1]!=B[j]){
-                printf("No");
-                break;
-            }
-        }   
-        //없으면 i만 증가 i가 끝에 도달할때까지 없으면 No
-        else if(i==n1-1){
-            printf("No");
-                break;
+    while (i < n1 && j < n2) {
+        if (A[i] == B[j]) {
+            j++; // B의 다음 원소 확인
         }
-            
+        i++; // A의 다음 원소로 이동
     }
+
+    // B의 모든 원소를 확인했다면 연속 부분 수열
+    if (j == n2) {
+        printf("Yes\n");
+    } else {
+        printf("No\n");
+    }
+
     return 0;
 }
