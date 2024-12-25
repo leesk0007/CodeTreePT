@@ -37,6 +37,11 @@ int main() {
                 break;
             }
         }   
+        else if(j>n2){
+            printf("No");
+                break;
+        }
+            
     }
     return 0;
 }
