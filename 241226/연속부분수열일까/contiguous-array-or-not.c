@@ -37,7 +37,8 @@ int main() {
                 break;
             }
         }   
-        else if(j>n2){
+        //없으면 i만 증가 i가 끝에 도달할때까지 없으면 No
+        else if(i==n1-1){
             printf("No");
                 break;
         }
