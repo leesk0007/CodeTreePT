@@ -21,9 +21,10 @@ int main() {
     for(i=index+1; i<n; i++){ 
         if(max<arr[i]){
             max = arr[i]; //샀음
-            result = (max-min);
+            
         }
     }
+    result = (max-min);
 
     if(result <= 0)
         printf("0");
