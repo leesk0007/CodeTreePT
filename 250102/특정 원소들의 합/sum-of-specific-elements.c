@@ -1,37 +1,23 @@
 #include <stdio.h>
 
 int main() {
-    // 여기에 코드를 작성해주세요.
-    int arr[4][4];
-    int i,j,sum;
+    // 2차원 배열을 구현합니다.
+	int arr_2d[4][4];
+    int sum = 0;
+	
+	// 각 줄마다 정수를 입력받습니다.
+	for(int i = 0; i < 4; i++)
+		for(int j = 0; j < 4; j++)
+			scanf("%d", &arr_2d[i][j]);
+	
+	// 색칠된 칸에 있는 원소들의 합을 구합니다.
+	for(int i = 0; i < 4; i++) {
+		for(int j = 0; j <= i; j++)
+			sum += arr_2d[i][j];
+	}
 
-    //입력받기
-    for(i=0; i<4; i++){
-        for(j=0; j<4; j++){
-            scanf("%d",&arr[i][j]);
-        }
-    }
-    // 합 계산
-    sum=0;
+    // 출력
+    printf("%d\n", sum);
 
-    for(i=0; i<4; i++){
-       switch(i){
-        case 0:
-            sum += arr[i][0];
-            break;
-        case 1:
-            sum += arr[i][0] +arr[i][1];
-            break;    
-        case 2:
-            sum += arr[i][0] +arr[i][1] + arr[i][2];
-            break;
-        case 3:
-            sum += arr[i][0] +arr[i][1] + arr[i][2] + arr[i][3];
-            break;
-        }
-    }
-
-    printf("%d",sum);
-    
     return 0;
 }
