@@ -1,11 +1,14 @@
 import java.util.Scanner;
 
 public class Main {
+
+    public static int[] re_arr;
+
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         int n = sc.nextInt();
         int[] arr = new int[n];
-        
+        re_arr = new int[n];
         for (int i = 0; i < n; i++) {
             arr[i] = sc.nextInt();
         }
@@ -27,13 +30,13 @@ public class Main {
         }
     }
 
+
     public static void merge_sort(int arr[], int low, int mid, int high){
         int i = low;
         int j = mid + 1;
 
         int k = low;
         
-        int[] re_arr = new int[arr.length]; 
 
         // 두 배열이 모두 비어있지 않다면
         while(i <= mid && j <= high){
@@ -48,18 +51,21 @@ public class Main {
                 k++;
             }
         }
-        // 2. 왼쪽에 남은 거 털어 넣기 (while 사용)
-        while(i <= mid){
-            re_arr[k++] = arr[i++];
+        // 1번 배열이 비어있지않다면
+        if(i < mid + 1){
+            for(int f = i; f <= mid; f++)
+                re_arr[k++] = arr[i];
+                i++;
         }
-
-        // 3. 오른쪽에 남은 거 털어 넣기 (while 사용)
-        while(j <= high){
-            re_arr[k++] = arr[j++];
+        // 2번 배열이 비어있지않다면
+        else if(j < high + 1){
+            for(int f = j; f <= high; f++)
+                re_arr[k++] = arr[j];
+                j++;
         }
         
         for(int index = low; index <= high; index++) {
             arr[index] = re_arr[index];
-        }
+        }        
     }
 }
